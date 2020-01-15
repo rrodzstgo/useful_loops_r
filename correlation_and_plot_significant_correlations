@@ -1,0 +1,24 @@
+# this will generate a correlation matrix and will then generate a plot of the significant correlations in accord to the significance level dictated by sig.level. This uses the libraries corrplot and rcorr. The input is a matrix of data
+
+library(corrplot)
+library(Hmisc)
+
+filtered_correlation <- function (data_matrix,cortype,p_value){
+  correlations <- rcorr(as.matrix(data_matrix), type = cortype)
+  correlation_plot <- corrplot(correlations$r, type="upper", p.mat = correlations$P, sig.level = p_value, insig = "blank")
+  print(correlations)
+  return(correlation_plot)
+}
+
+
+#functions
+
+flattenCorrMatrix <- function(cormat, pmat) {
+  ut <- upper.tri(cormat)
+  data.frame(
+    row = rownames(cormat)[row(cormat)[ut]],
+    column = rownames(cormat)[col(cormat)[ut]],
+    cor  =(cormat)[ut],
+    p = pmat[ut]
+  )
+}
