@@ -1,0 +1,26 @@
+#iterate over the rows to verify the normality of the data
+
+for(feature in 1:length(row.names(data))){
+  stattable <- table(as.data.frame(data[feature,-1]),group)
+  statt <- shapiro.test(my_data$len)$p.value
+  p_value <- c(as.vector(p_value), statt) 
+}
+
+shapiro_table <- data_frame(row.names(data),p_value)
+View(shapiro_table)
+}
+
+
+
+#iterate over the columns to verify the normality of the data
+
+
+for(feature in 1:length(colnames(data))){
+  stattable <- table(as.data.frame(data[,feature]),group)
+  statt <- shapiro.test(my_data$len)$p.value
+  p_value <- c(as.vector(p_value), statt) 
+}
+
+shapiro_table <- data_frame(row.names(data),p_value)
+View(shapiro_table)
+}
