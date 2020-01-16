@@ -1,0 +1,19 @@
+p_value <- vector("numeric")
+
+for(name in 2:length(colnames(dat))){
+  log_glm <- glm(response ~ dat[,name] ,dat, family = binomial)
+  coe <- as.numeric(coefficients(summary(log_glm))[8])
+  p_value <- c(as.vector(p_value), coe)
+}
+
+dat_log_regression_pvalues <- data.frame(colnames(dat[,2:17]),p_value)
+
+
+glm_loop <- function (data_frame, first_data_col,type_glm)
+for(name in first_data_col:length(colnames(data_matrix))){
+  log_glm <- glm(response ~ data_matrix[,name] ,data_matrix, family = type_glm)
+  coe <- as.numeric(coefficients(summary(log_glm))[8])
+  p_value <- c(as.vector(p_value), coe)
+}
+
+dat_log_regression_pvalues <- data.frame(colnames(dat[,2:17]),p_value)
