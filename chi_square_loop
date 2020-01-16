@@ -1,0 +1,14 @@
+chi_sq_loop <- function (data, group){
+
+p_value <- vector()
+
+
+for(feature in 1:length(row.names(data))){
+  stattable <- table(as.data.frame(data[feature,-1]),group)
+  statt <- chisq.test(stattable)$p.value
+  p_value <- c(as.vector(p_value), statt) 
+}
+
+chi_sqr_table <- data_frame(row.names(data),p_value)
+View(chi_sqr_table)
+}
