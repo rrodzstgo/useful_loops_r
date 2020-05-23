@@ -1,7 +1,7 @@
 #use this loop to go over columns of data where the samples are in rows
 #the result will have a two column table of variable name and p-value
 
-kruskall_loop_column <- function (data, group,first_data_col){
+kruskal_loop_column <- function (data, group,first_data_col){
   
   p_value <- vector()
   
